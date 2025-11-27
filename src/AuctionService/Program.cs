@@ -1,3 +1,4 @@
+using AuctionService.Consumers;
 using AuctionService.Data;
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -19,15 +20,15 @@ builder.Services.AddMassTransit(config =>
         o.UseBusOutbox();
     });
 
-    //config.AddConsumersFromNamespaceContaining<AuctionConsumer>();
+    config.AddConsumersFromNamespaceContaining<AuctionFinishedConsumer>();
     config.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("auction", false));
 
     config.UsingRabbitMq((ctx, cfg) =>
     {
-        cfg.Host(builder.Configuration.GetValue<string>("RabbitMQ:Host"), h =>
+        cfg.Host(builder.Configuration.GetValue<string>("RabbitMQ:Host"), "/", h =>
         {
-            h.Username(builder.Configuration.GetValue<string>("RabbitMQ:Username"));
-            h.Password(builder.Configuration.GetValue<string>("RabbitMQ:Password"));
+            h.Username(builder.Configuration.GetValue<string>("RabbitMQ:Username", "guest"));
+            h.Password(builder.Configuration.GetValue<string>("RabbitMQ:Password", "guest"));
         });
         cfg.ConfigureEndpoints(ctx);
     });
@@ -36,7 +37,7 @@ builder.Services.AddMassTransit(config =>
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.Authority = builder.Configuration.GetValue<string>("Authentication:IdentityServiceUrl");
+        options.Authority = builder.Configuration.GetValue<string>("IdentityServiceUrl");
         options.RequireHttpsMetadata = false;
         options.TokenValidationParameters.ValidateAudience = false;
         options.TokenValidationParameters.NameClaimType = "username";
