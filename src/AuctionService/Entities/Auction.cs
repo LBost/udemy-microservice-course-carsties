@@ -19,5 +19,7 @@ namespace AuctionService.Entities
         //navigation properties
         public Item Item { get; set; }
 
+        public bool HasReservePrice() => ReservePrice > 0;
+
     }
 }

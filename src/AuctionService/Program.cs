@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<IAuctionRepository, AuctionRepository>();
+
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AuctionDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -60,3 +62,4 @@ catch (System.Exception e)
 
 app.Run();
 
+public partial class Program { }
