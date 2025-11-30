@@ -1,5 +1,3 @@
-using System;
-using Microsoft.AspNetCore.Mvc;
 using MongoDB.Entities;
 using SearchService.Models;
 
@@ -17,6 +15,9 @@ public class AuctionServiceHttpClient(HttpClient httpClient, IConfiguration conf
             .Project(p => p.UpdatedAt.ToString())
             .ExecuteAnyAsync();
 
-        return await httpClient.GetFromJsonAsync<List<Item>>(config["AuctionServiceUrl"] + "api/auctions?date=" + lastUpdated);
+        if (lastUpdated)
+            return await httpClient.GetFromJsonAsync<List<Item>>(config["AuctionServiceUrl"] + "/api/auctions?date=" + lastUpdated);
+        else
+            return await httpClient.GetFromJsonAsync<List<Item>>(config["AuctionServiceUrl"] + "/api/auctions");
     }
 }
