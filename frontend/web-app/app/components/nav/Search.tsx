@@ -23,7 +23,7 @@ export default function Search() {
   }, [searchTerm]);
 
   return (
-    <div className="flex w-full items-center border border-gray-300 rounded-full py-2 shadow-sm">
+    <div className="flex w-[50%] items-center border border-gray-300 rounded-full py-2 shadow-sm">
       <input
         onChange={handleChange}
         onKeyDown={(e) => {
