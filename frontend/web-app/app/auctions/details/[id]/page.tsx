@@ -38,13 +38,12 @@ export default async function Details({
         <div className="relative w-full bg-gray-200 aspect-4/3 rounded-lg overflow-hidden">
           <CarImage imageUrl={data.imageUrl} />
         </div>
-        <div className="border rounded-lg p-2 bg-gray-200">
+        <div className="border rounded-lg p-2 bg-gray-200 dark:bg-gray-800 dark:text-gray-200">
           <Headings title="Bids" />
         </div>
-
-        <div className="mt-3">
-          <DetailedSpecs auction={data} />
-        </div>
+      </div>
+      <div className="mt-6">
+        <DetailedSpecs auction={data} />
       </div>
     </>
   );

@@ -28,7 +28,11 @@ export default function UserActions({ user }: Props) {
   }
 
   return (
-    <Dropdown inline label={`Welcome ${user.name}`} className="cursor-pointer">
+    <Dropdown
+      inline
+      label={`Welcome ${user.name}`}
+      className="cursor-pointer dark:bg-gray-800 dark:text-gray-200"
+    >
       <DropdownItem icon={HiUser} onClick={setSeller}>
         My Auctions
       </DropdownItem>

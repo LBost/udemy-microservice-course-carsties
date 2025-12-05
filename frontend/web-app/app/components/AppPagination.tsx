@@ -20,7 +20,7 @@ export default function AppPagination({
       totalPages={pageCount}
       layout="pagination"
       showIcons={true}
-      className="text-blue-500"
+      className="text-blue-500  dark:text-gray-200"
     />
   );
 }

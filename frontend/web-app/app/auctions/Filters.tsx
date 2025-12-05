@@ -24,7 +24,7 @@ export default function Filters() {
   const filterBy = useParamsStore((state) => state.filterBy);
 
   return (
-    <div className="flex justify-between items-center mb-4">
+    <div className="flex justify-between items-center mb-4 dark:text-gray-200">
       <div>
         <span className="uppercase text-sm text-gray-500 mr-2">Filter by</span>
         <ButtonGroup>
