@@ -20,6 +20,8 @@ export default function Listings() {
       searchTerm: state.searchTerm,
       orderBy: state.orderBy,
       filterBy: state.filterBy,
+      seller: state.seller,
+      winner: state.winner,
     }))
   );
   const setParams = useParamsStore((state) => state.setParams);
@@ -42,6 +44,8 @@ export default function Listings() {
 
   return (
     <>
+      {params.seller && <h1 className="text-2xl mb-4">My Cars</h1>}
+      {params.winner && <h1 className="text-2xl mb-4">Auctions Won</h1>}
       <Filters />
       {data.pageCount === 0 ? (
         <EmptyFilter showReset />

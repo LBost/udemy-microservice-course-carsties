@@ -1,7 +1,7 @@
 type Props = {
   title: string;
   subTitle?: string;
-  centered: boolean;
+  centered?: boolean;
 };
 
 export default function Headings(props: Props) {

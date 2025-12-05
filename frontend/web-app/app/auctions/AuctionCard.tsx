@@ -8,7 +8,10 @@ type Props = {
 
 export default function AuctionCard({ auction }: Props) {
   return (
-    <a href="#" className="border border-gray-200 rounded-lg">
+    <a
+      href={`/auctions/details/${auction.id}`}
+      className="border border-gray-200 rounded-lg"
+    >
       <div className="relative w-full bg-gray-200 aspect-video rounded-lg overflow-hidden">
         <CarImage imageUrl={auction.imageUrl} />
         <div className="absolute bottom-1 left-1">

@@ -21,10 +21,10 @@ const renderer = ({
             border  text-white py-1 px-2 rounded-lg flex justify-center opacity-80 
             ${
               completed
-                ? 'border-red-400'
+                ? 'border-red-500'
                 : days === 0 && hours < 10
-                ? 'border-amber-400'
-                : 'border-green-400'
+                ? 'border-amber-500'
+                : 'border-green-500'
             }
             ${
               completed
@@ -38,7 +38,7 @@ const renderer = ({
         <span>Auction finished</span>
       ) : (
         <span suppressHydrationWarning={true}>
-          {days > 1 ? zeroPad(days) : null}{' '}
+          {days >= 1 ? zeroPad(days) : null}{' '}
           {days > 1 ? 'days' : days === 1 ? 'day' : null} {zeroPad(hours, 2)}:
           {zeroPad(minutes, 2)}:{zeroPad(seconds, 2)}
         </span>
