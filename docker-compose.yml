@@ -132,6 +132,22 @@ services:
       mongodb:
         condition: service_healthy
 
+  notify-svc:
+    image: notify-svc:latest
+    build: 
+      context: .
+      dockerfile: src/NotificationService/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__UserName=user
+      - RabbitMQ__Password=rabbitPwd
+    ports:
+      - 7004:80
+    depends_on:
+      - rabbitmq
+
   gateway-svc:
     image: gateway-svc:latest
     build:
